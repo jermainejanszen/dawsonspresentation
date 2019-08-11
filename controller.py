@@ -1,4 +1,4 @@
-from bottle import route, get, post, request, response, redirect, static_file
+from bottle import route, get, post, request, response, redirect, static_file, template
 
 import model
 
@@ -42,3 +42,9 @@ def serve_js(js):
 @route('/content/js/<js:path>')
 def serve_js_two(js):
     return static_file(js, root='js/')
+
+#-----------------------------------------------------------------------------
+
+@route('/')
+def index():
+    return template('templates/index.html')
