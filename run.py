@@ -1,28 +1,42 @@
+import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 url = 'http://www.dawsonsespresso.com.au/'
-# driverPath = '/Users/jermaine/Desktop/chromedriver'   # Mac
-driverPath = 'C:/Users/User/Desktop/chromedriver'       # Windows
+driverPath = 'C:/Users/User/Documents/Projects/chromedriver'
+chromeOptions = Options()
+chromeOptions.headless = True
 
-driver = webdriver.Chrome(driverPath)
+driver = webdriver.Chrome(driverPath, options=chromeOptions)
 driver.get(url)
 
 menuButton = driver.find_element_by_id('glfButton0')
 menuButton.click()
 
-numSpecials = input('How many specials are there today?\n')
-numSpecials = int(numSpecials)
+time.sleep(5)
 
 driver.switch_to.frame("gfOrderFrm")
 
-menuItems = [[None for x in range(numSpecials)] for y in range(numSpecials)]
+menuItems = []
 
-for i in range(numSpecials):
-    itemName_element = driver.find_element_by_xpath('//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[1]/div[2]'.format(i + 1))
-    menuItems[i][0] = itemName_element.text
-    itemDescription_element = driver.find_element_by_xpath('//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[1]/div[3]'.format(i + 1))
-    menuItems[i][2] = itemDescription_element.text
-    itemPrice_element = driver.find_element_by_xpath('//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[2]/div[1]/span'.format(i + 1))
-    menuItems[i][1] = itemPrice_element.text
+foundAllSpecials = False
+
+counter = 0
+while(not foundAllSpecials):
+    itemName_element = driver.find_element_by_xpath('//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[1]/div[2]'.format(counter + 1))
+    if(itemName_element.text == 'Hot Foods'):
+        foundAllSpecials = True
+        break
+    menuItem = [None, None, None]
+    menuItem[0] = itemName_element.text
+    itemDescription_element = driver.find_element_by_xpath('//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[1]/div[3]'.format(counter + 1))
+    menuItem[2] = itemDescription_element.text
+    itemPrice_element = driver.find_element_by_xpath('//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[2]/div[1]/span'.format(counter + 1))
+    menuItem[1] = itemPrice_element.text
+    menuItems.append(menuItem)
+    counter = counter + 1
+
+for i in range(len(menuItems)):
+    print('Item name: {}'.format(menuItems[i][0]))
 
 driver.close()
