@@ -1,38 +1,45 @@
-from bottle import run
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
-#-----------------------------------------------------------------------------
-# Get our components
-# You may eventually wish to put these in their own directories and then load 
-# Each file separately
-# For the template, we will keep them together
-import model
-import view
-import controller
-#-----------------------------------------------------------------------------
+url = 'http://www.dawsonsespresso.com.au/'
+driverPath = '/Users/jermaine/chromedriver'
+chromeOptions = Options()
+chromeOptions.headless = True
 
-'''
-    This file is the one to run to start your webserver
-    Keep it clean and keep it simple, you're going to have
-    Up to 5 people running around breaking this constantly
-    If it's all in one file, then things are going to be hard to fix
+driver = webdriver.Chrome(driverPath, options=chromeOptions)
+driver.get(url)
 
-    If in doubt, `import this`
-'''
+menuButton = driver.find_element_by_id('glfButton0')
+menuButton.click()
 
-#-----------------------------------------------------------------------------
-# It might be a good idea to move the following settings to a config file and then load them
-# Change this to your IP address or 0.0.0.0 when actually hosting
-host = 'localhost'
+time.sleep(5)
 
-# Test port, change to the appropriate port to host
-port = 8080
+driver.switch_to.frame("gfOrderFrm")
 
-# Turn this off for production
-debug = True
+menuItems = []
 
-# auto reload
-reloader = True
-#-----------------------------------------------------------------------------
+foundAllSpecials = False
 
-#Run the server
-run(host=host, port=port, debug=debug, reloader=reloader)
+counter = 0
+while(not foundAllSpecials):
+    itemName_element = driver.find_element_by_xpath(
+        '//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[1]/div[2]'.format(counter + 1))
+    if(itemName_element.text == 'Hot Foods'):
+        foundAllSpecials = True
+        break
+    menuItem = [None, None, None]
+    menuItem[0] = itemName_element.text
+    itemDescription_element = driver.find_element_by_xpath(
+        '//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[1]/div[3]'.format(counter + 1))
+    menuItem[2] = itemDescription_element.text
+    itemPrice_element = driver.find_element_by_xpath(
+        '//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]/div[{}]/div[1]/div[2]/div[1]/span'.format(counter + 1))
+    menuItem[1] = itemPrice_element.text
+    menuItems.append(menuItem)
+    counter = counter + 1
+
+for i in range(len(menuItems)):
+    print('Item name: {}'.format(menuItems[i][0]))
+
+driver.close()
