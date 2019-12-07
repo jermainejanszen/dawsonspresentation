@@ -1,6 +1,7 @@
 import time
 import urllib
 import urllib.request
+# pip install selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -45,11 +46,6 @@ def getMenuItems():
             menuItems.append(menuItem)
 
     for i in range(len(menuItems)):
-        '''
-        print('Item name: {}'.format(menuItems[i]['name']))
-        print('Item description: {}'.format(menuItems[i]['description']))
-        print('Item price: {}'.format(menuItems[i]['price']))
-        '''
         urllib.request.urlretrieve(
             itemImages[i], "images/{}.jpg".format(i + 1))
 

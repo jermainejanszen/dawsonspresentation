@@ -1,5 +1,7 @@
 import tkinter
 from run import getMenuItems
+# pip install pillow
+from PIL import Image, ImageTk
 
 # menuItems = getMenuItems()
 
@@ -16,18 +18,27 @@ menuItems = [{'name': 'Club Sandwich',
 
 window = tkinter.Tk()
 window.title("Lunch Specials")
+screenWidth = window.winfo_screenwidth()
+screenHeight = window.winfo_screenheight()
+window.geometry('{}x{}'.format(screenWidth, screenHeight))
 
-itemsFrame = tkinter.Frame(window).pack()
-indvItemFrames = []
-for item in menuItems:
-    fullFrame = tkinter.Frame(itemsFrame).pack()
-    textFrame = tkinter.Frame(fullFrame).pack(side='left')
+itemsFrame = tkinter.Frame(window)
+itemsFrame.pack(padx=50, pady=50)
+for i in range(len(menuItems)):
+    item = menuItems[i]
+    rawImage = 'images/{}.jpg'.format(i+1)
+    itemPhoto = tkinter.PhotoImage(rawImage)
+    itemImage = tkinter.Label(itemsFrame, image=itemPhoto)
+    itemImage.grid(row=2*i, rowspan=2, column=0)
     itemName = tkinter.Label(
-        textFrame, text=item['name'], fg='black').pack(side='left')
+        itemsFrame, text=item['name'], fg='black')
+    itemName.grid(row=2*i, column=1, sticky='W')
     itemDescription = tkinter.Label(
-        textFrame, text=item['description'], fg='gray').pack(side='left')
+        itemsFrame, text=item['description'], fg='gray')
+    itemDescription.grid(row=2*i+1, column=1, sticky='W')
     itemPrice = tkinter.Label(
-        fullFrame, text=item['price'], fg='black').pack(side='right')
-    indvItemFrames.append(fullFrame)
+        itemsFrame, text=item['price'], fg='black')
+    itemPrice.grid(row=2*i, column=2, sticky='E')
+
 
 window.mainloop()
