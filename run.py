@@ -1,8 +1,8 @@
 from scraper import getMenuItems
 from view import createView
 
-menuItems = getMenuItems()
-'''
+# menuItems = getMenuItems()
+
 # for testing purposes
 menuItems = [{'name': 'Club Sandwich',
               'description': 'chicken breast, bacon, tomato, lettuce, cheese, avocado & aioli on turkish with chips',
@@ -13,5 +13,5 @@ menuItems = [{'name': 'Club Sandwich',
              {'name': 'Jalapeno Fish Tails & Chips',
               'description': 'crumbed jalapeno fish tails served with chips, salad & tartare sauce',
               'price': '11.00'}]
-'''
+
 createView(menuItems)

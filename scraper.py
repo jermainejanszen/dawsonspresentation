@@ -1,6 +1,7 @@
 import time
 import urllib
 import urllib.request
+import os
 # pip install selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -11,7 +12,7 @@ from selenium.webdriver.chrome.options import Options
 #   name, description, and price of each menu item.
 def getMenuItems():
     url = 'http://www.dawsonsespresso.com.au/'
-    driverPath = '/Users/jermaine/chromedriver'
+    driverPath = os.getcwd() + '/chromedriver'
     chromeOptions = Options()
     chromeOptions.headless = True
 
@@ -50,7 +51,7 @@ def getMenuItems():
 
     for i in range(len(menuItems)):
         urllib.request.urlretrieve(
-            itemImages[i], "images/{}.jpg".format(i + 1))
+            itemImages[i], "images/{}.gif".format(i + 1))
 
     driver.quit()
     return menuItems
