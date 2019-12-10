@@ -15,3 +15,4 @@ menuItems = [{'name': 'Club Sandwich',
               'price': '11.00'}]'''
 
 createView(menuItems)
+print('DONE')
