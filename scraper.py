@@ -23,7 +23,6 @@ def getMenuItems():
     menuButton.click()
 
     time.sleep(5)
-
     driver.switch_to.frame("gfOrderFrm")
 
     menuItems = []

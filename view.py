@@ -31,7 +31,12 @@ def createView(menuItems):
                 slideShapes[i].text_frame.paragraphs[0].font.bold = True
                 slideShapes[i].text_frame.paragraphs[0].font.size = Pt(18)
         else:
-            itemImage = Image.open('images/{}.gif'.format((i - 15) % 3 + 1))
-            slideShapes[i].Image = itemImage
+            imgPath = 'images/{}.gif'.format((i - 14) % 3 + 1)
+            slideShapes[i]
+            itemImage = slideShapes.add_picture(
+                imgPath, slideShapes[i].left, slideShapes[i].top)
+            itemImage.width = slideShapes[i].width
+            itemImage.height = slideShapes[i].height
+
     prs.save('resources/TodaysSpecials.pptx')
     return
