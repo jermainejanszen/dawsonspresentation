@@ -1,6 +1,4 @@
 import os
-# pip install pillow
-from PIL import Image, ImageTk
 # pip install python-pptx
 import pptx
 from pptx import Presentation
