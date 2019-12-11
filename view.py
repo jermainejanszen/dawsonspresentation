@@ -36,5 +36,5 @@ def createView(menuItems):
             itemImage.width = slideShapes[i].width
             itemImage.height = slideShapes[i].height
 
-    prs.save('resources/TodaysSpecials.pptx')
+    prs.save('TodaysSpecials.pptx')
     return
