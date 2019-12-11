@@ -27,8 +27,6 @@ def getMenuItems():
 
     menuItems = []
 
-    foundAllSpecials = False
-
     items = driver.find_elements_by_xpath(
         '//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]')
     itemsInfo = items[0].text.split('\n')

@@ -1,5 +1,12 @@
 from scraper import getMenuItems
 from view import createView
+import tkinter
+
+window = tkinter.Tk()
+window.title("Today's Specials")
+
+label = tkinter.Label(window, text = "Loading, please wait.")
+label.place(relx = 0.5, rely = 0.5)
 
 menuItems = getMenuItems()
 '''
@@ -15,4 +22,6 @@ menuItems = [{'name': 'Club Sandwich',
               'price': '11.00'}]'''
 
 createView(menuItems)
+
+label['text'] = "DONE, you can now close this window."
 print('DONE')
