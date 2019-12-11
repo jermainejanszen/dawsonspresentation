@@ -23,12 +23,9 @@ def getMenuItems():
     menuButton.click()
 
     time.sleep(5)
-
     driver.switch_to.frame("gfOrderFrm")
 
     menuItems = []
-
-    foundAllSpecials = False
 
     items = driver.find_elements_by_xpath(
         '//*[@id="fb-content"]/app-restaurant/div/ui-view/app-menu/div/app-menu-items/div[1]/div[3]')
