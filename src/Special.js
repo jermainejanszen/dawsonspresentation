@@ -6,7 +6,7 @@ export class Special extends React.Component {
     render() {
         return (
             <div style={specialStyle.comp}>
-                <div>
+                <div style={specialStyle.text}>
                     <h2 style={specialStyle.name}>{this.props.name}</h2>
                     <h3 style={specialStyle.desc}>{this.props.desc}</h3>
                 </div>

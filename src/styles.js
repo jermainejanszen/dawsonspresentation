@@ -2,7 +2,7 @@
 export const generalStyle = {
     comp: {
         fontFamily: "Arial, Helvetica, sans-serif",
-        //border: "3px solid rgb(0,0,255)",
+        border: "3px solid rgb(0,0,255)",
         padding: "0px 20px",
         display: "flex",
         flexDirection: "column",
@@ -14,28 +14,46 @@ export const generalStyle = {
 
 export const headerStyle = {
     comp: {
-        //border: "3px solid rgb(0,255,0)",
+        border: "3px solid rgb(0,255,0)",
+        display: "flex",
+        alignContent: "center",
     },
     image: {
         filter: "invert(100%)",
         padding: "5px 15px",
         maxWidth: "20%",
-        float: "left",
     },
     text: {
         textAlign: "center",
+        flexGrow: 1,
     }
+}
+
+export const specialListStyle = {
+    border: "3px solid rgb(255,0,255)",
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
 }
 
 export const specialStyle = {
     comp: {
-        //border: "3px solid rgb(0,255,255)",
+        border: "3px solid rgb(0,255,255)",
+        flexGrow: 1,
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
+        alignContent: "center",
     },
     image: {
 
+    },
+    text: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignContent: "center",
     },
     name: {
         fontWeight: "bold",
@@ -47,14 +65,16 @@ export const specialStyle = {
     },
     price: {
         fontWeight: "bold",
-        float: "right",
         textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
     }
 }
 
 export const footerStyle = {
     comp: {
-        //border: "3px solid rgb(255,0,0)",
+        border: "3px solid rgb(255,0,0)",
         bottom: 0,
         display: "flex",
         flexDirection: "row",

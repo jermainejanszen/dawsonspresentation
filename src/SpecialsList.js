@@ -1,6 +1,7 @@
 import React from 'react';
 import { Special } from './Special';
 import { getSpecials } from './scraper/scraper';
+import { specialListStyle } from './styles';
 
 export class SpecialsList extends React.Component {
 
@@ -19,7 +20,7 @@ export class SpecialsList extends React.Component {
         });
 
         return (
-            <div>
+            <div style={specialListStyle}>
                 {specialComps}
             </div>
         );
