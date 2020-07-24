@@ -47,13 +47,17 @@ export const specialStyle = {
         alignContent: "center",
     },
     image: {
-
+        padding: "0.5%",
+        borderRadius: "5%",
+        width: "auto",
+        height: "80%",
     },
     text: {
+        flexGrow: 1,
+        padding: "2%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignContent: "center",
     },
     name: {
         fontWeight: "bold",
@@ -64,6 +68,7 @@ export const specialStyle = {
         fontStyle: "italic",
     },
     price: {
+        padding: "2%",
         fontWeight: "bold",
         textAlign: "center",
         display: "flex",

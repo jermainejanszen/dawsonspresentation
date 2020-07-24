@@ -7,22 +7,20 @@ export class SpecialsList extends React.Component {
 
     render() {
         const specials = getSpecials();
-        var specialComps = [];
-        specials.specials.forEach(value => {
-            specialComps.push(
-                <Special 
-                    key={value.id} 
-                    name={value.name} 
-                    desc={value.desc} 
-                    price={value.price} 
-                />
-            )
-        });
+        var specialComps = specials.specials.map(value => 
+            <Special 
+                id={value.key} 
+                name={value.name} 
+                desc={value.desc} 
+                price={value.price} 
+            />
+
+        );
 
         return (
-            <div style={specialListStyle}>
+            <ul style={specialListStyle}>
                 {specialComps}
-            </div>
+            </ul>
         );
     }
 }
